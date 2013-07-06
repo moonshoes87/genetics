@@ -1,0 +1,26 @@
+var persist = require("persist");
+var type = persist.type;
+
+
+
+module.exports = Gene = persist.define("Gene", {
+//    "created": { type: type.DATETIME, defaultValue: function() { return new Date() } },
+    "symbol": { type: type.STRING }
+})
+
+/*
+module.exports = Blog = persist.define("Blog", {
+  "created": { type: type.DATETIME, defaultValue: function() { return new Date() } },
+  "lastUpdated": { type: type.DATETIME },
+  "title": { type: type.STRING },
+  "body": { type: type.STRING }
+})
+  .hasOne(Category)
+  .hasMany(Keyword, { through: "blogs_keywords" });
+
+Blog.onSave = function(obj, connection, callback) {
+  obj.lastUpdated = new Date();
+  callback();
+}
+
+*/
