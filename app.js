@@ -42,11 +42,12 @@ if ('development' == app.get('env')) {
 
 // JSON API     must make these reasonable                                                                         
 app.get('/api/genes', api.genes);
+app.get('/api/:gene/:probeset', api.probeset);
 //app.get('/api/real_genes', api.real_genes);
-app.get('/api/gene/:id', api.gene);
-app.post('/api/gene/', api.addGene);
-app.put('/api/gene/:id', api.editGene);
-app.delete('/api/gene/:id', api.deleteGene);
+//app.get('/api/gene/:id', api.gene);
+//app.post('/api/gene/', api.addGene);
+//app.put('/api/gene/:id', api.editGene);
+//app.delete('/api/gene/:id', api.deleteGene);
 
 // actual routes
 

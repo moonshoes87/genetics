@@ -7,33 +7,32 @@ angular.module('geneApp.controllers', []).
     $scope.var1 = "variable!";
     console.log("WorldCtrl works");
 }).
-  controller('IndexCtrl', function($scope, $http) {
+  controller('IndexCtrl', function($scope, $http, $location) {
       $scope.var2 = "other variable";
-}).
-  controller('GeneListCtrl', function GeneListCtrl($scope, $http) {
-    $scope.giraffe = "giraffe";
-    $http.get('/api/genes').
-      success(function(data, status, headers, config){
-	console.log(data.genes);
-	console.log(status);
-	$scope.genes = data.genes; // not tracking correctly as success, for some reason
-	console.log("data",data);
-	console.log(data.success);
-        if(data.success){
-	  $scope.genes = data.genes;
-	}
-      });
-  }).
-    controller('GeneRealCtrl', function GeneRealCtrl($scope, $http) {
-      $http.get('/api/get_genes').
+      $http.get("/api/genes").
 	  success(function(data, status, headers, config){
-	      console.log("data", data);
-	      console.log("data.genes", data.genes);
-	      $scope.stuff = data.stuff;
-	      $scope.genes_count = data.genes.count;
-	      $scope.genes = data.genes.genes;
-	  }); 
-  });  // using orm and stuff
+	      $scope.genes = data.genes;
+	      console.log($scope.genes);
+	  })
+      $scope.select_probeset = function(gene, ps){
+	  console.log("selecting probeset " + ps);
+	  $location.path("/probesets/" + gene + '/' + ps);
+      }
+  }).
+  controller('ShowCtrl', function($scope, $http, $location, $route, $routeParams){
+      $scope.var1 = "golf club"
+      console.log($routeParams)
+      $scope.which_probeset = $routeParams.probeset
+      $scope.which_gene = $routeParams.gene
+      $http.get('api/' + $scope.which_gene + '/' + $scope.which_probeset).
+	  success(function(data){
+	    console.log(data);
+	      $scope.stuff = data
+	  })
+      // this yields the number of the probeset we want to call up, hooray!
+      // we will need: the gene the probeset is associated with, all the expressions, and thus all the tissues
+
+})
 
 
 

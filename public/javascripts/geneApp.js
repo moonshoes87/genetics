@@ -17,11 +17,8 @@ angular.module('geneApp', [
 //trying different syntax for $routeProvider
 .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $routeProvider.
-	when('/', {controller: 'IndexCtrl', templateUrl: 'partials/partial1'}).//, templateUrl: 'template1.ejs'}).
-/*	when('/hello_world', {controller: 'IndexCtrl', templateUrl: 'partials/partial2'}).//, templateUrl: 'template2.ejs'}).
-	when('/hello', {controller: 'WorldCtrl', templateUrl: 'partials/partial1'}).//, templateUrl: 'template1.ejs'}).
-	when('/genes', {controller: 'GeneListCtrl', templateUrl: 'partials/gene_index'}).
-	when('/get_genes', {controller: 'GeneRealCtrl', templateUrl: 'partials/gene_index'}). // using orm stuff */
+	when('/', {controller: 'IndexCtrl', templateUrl: 'partials/gene_list.ejs'}).
+	when('/probesets/:gene/:probeset', { controller: 'ShowCtrl', templateUrl: 'partials/gene_show.ejs' }). // trying to make it /:number
 	otherwise({redirect_to: '/'});
-    $locationProvider.html5Mode(true);
+    //$locationProvider.html5Mode(true); // this fucks it up, for some reason
 }]);
