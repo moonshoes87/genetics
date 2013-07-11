@@ -51,6 +51,7 @@ app.delete('/api/gene/:id', api.deleteGene);
 // actual routes
 
 //app.get('*', routes.index)
+app.get('/partials/:name', routes.partials)
 app.get('/', routes.index);
 app.get('/GeneApp.js', function(request, response){
     response.sendfile("/Users/nebula/angular_projects/genetics/public/javascripts/geneApp.js");

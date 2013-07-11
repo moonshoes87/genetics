@@ -8,8 +8,12 @@ var genes = require("../models/genes");
 var fake_db = {
   "genes": [
     {
-      "id": 1,
-      "symbol": "Lorem ipsum"
+	"id": 1,
+	"symbol": "Lorem ipsum",
+	"probesets": {
+	    "id": 1,
+	    "number": 3872,
+	    "gene_id": 1
     },
     {
       "id": 2,
@@ -20,8 +24,6 @@ var fake_db = {
 
 // GET
 
-//need to add in a success thing for this
-// this is the GET funciton that uses the fake db
 exports.genes = function (req, res) {
   var genes = [];
   fake_db.genes.forEach(function (gene, i) {
@@ -35,81 +37,7 @@ exports.genes = function (req, res) {
   });
 };
 
-// successful??  orm usage
- //get function that uses the real database
-exports.get_genes = function(req, res){
-console.log("doing get_genes()");
-persist.connect({
-  driver: 'sqlite3',
-  filename: 'development.sqlite3',
-  trace: true
-}, function(err, conn){
-    if(err) { next(err); return; }
-
-    conn.chain({
-//blogs: models.Blog.include(["category"]).jqgrid(req.query).all,
-            genes: genes.include(["probesets"]).all,
-            count: genes.count,
-	    first: genes.first
-    }, function(err, results){
-            if(err) { console.log(err); return err }//next(err); return; }                                                             
-            else{
-                console.log("results", results["genes"]);
-		probesets = [];
-		var json = {
-		    genes: results
-		}
-//		var json = results;
-		//res.end(JSON.stringify(json, null, '\t'));
-//		res.end(JSON.stringify(results["genes"]))
-		console.log("hello", JSON.stringify(json, null, '\t'));
-		res.end(JSON.stringify(json, null, '\t'));
-//		res.end("hello");
-		//return results;
-           }
-	    }
-              )}
-)}
-// end
-
-/*
-exports.blogs = function(req, res, next){
-  persist.connect(function(err, conn) {
-    if(err) { next(err); return; }
-
-    conn.chain({
-      blogs: models.Blog.include(["category"]).jqgrid(req.query).all,
-      count: models.Blog.include(["category"]).jqgridCount(req.query).count
-    }, function(err, results) {
-      if(err) { next(err); return; }
-
-      var json = {
-        total: Math.ceil(results.count / req.query.rows),
-        page: req.query.page,
-        records: results.count,
-        rows: results.blogs.map(function(blog) {
-          return {
-            id: blog.id,
-            cell: [
-              blog.id,
-              blog.title,
-              blog.category.name,
-              blog.created.toISOString(),
-              blog.lastUpdated.toISOString(),
-              "<a href='/blogs/" + blog.id + "'>Edit</a>"
-            ]
-          };
-        })
-      };
-
-      res.end(JSON.stringify(json, null, '\t'));
-    });
-  });
-};*/
-
-//done persist
-
-
+//GET single gene
 
 exports.gene = function (req, res) {
   var id = req.params.id;
@@ -122,8 +50,7 @@ exports.gene = function (req, res) {
   }
 };
 
-
-// GENE
+// POST
 exports.addGene = function (req, res) {
   fake_db.genes.push(req.body);
   res.json(req.body);
