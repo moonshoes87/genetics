@@ -1,0 +1,14 @@
+<p>I will be a list of genes</p>
+<p> Here there will be a search function! </p>
+<div>
+	Search : <input ng-model="query">
+</div>
+<p>{{query}}</p>
+<br />
+<div ng-repeat="gene in genes | filter: query">
+     <h3>{{gene.id}} : {{gene.symbol}}</h3>
+     <p>{{gene.tags}}</p>
+     <div ng-repeat="probeset in gene.probesets"><div ng-click="select_probeset(gene.id, probeset.id)">{{probeset}}</div></div>
+     <br />
+</div>
+

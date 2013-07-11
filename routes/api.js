@@ -17,7 +17,7 @@ var fake_db = {
 		"gene_id": 0
 	    },
 			  {
-			      "id": 1,	   
+			      "id": 2,	   
 			      "number": 3289,
 			      "gene_id": 0
 			 }
@@ -72,16 +72,23 @@ exports.probeset = function(req, res){
     console.log(req.params)
     var gene_id = req.params.gene
     var probeset_id = req.params.probeset
-    console.log("gene_id", gene_id)
     var gene = fake_db.genes[gene_id]
-    console.log(gene)
-    var ps = gene.probesets[1]
-    console.log("gene.probesets", gene.probesets)
-    for (probeset in gene.probesets){
-	console.log("probeset", probeset) // mysteriously does not give an actual probeset
+    var probesets = gene.probesets;
+    var ps = {}
+    for (i=0; i < probesets.length; i++){
+	console.log("another probeset");
+	console.log("probeset", probesets[i].id);
+	console.log("id to match against", probeset_id);
+	if(parseInt(probesets[i].id) === parseInt(probeset_id)){
+	    ps = probesets[i]
+	}
     }
+    console.log("ps", ps)
+/*    for (probeset in gene.probesets){
+	return 0
+	//console.log("probeset", probeset) // mysteriously does not give an actual probeset
+    }*/
 
-    // grab the correct probeset based on the params and stuff it into json
     res.json({
 	gene: gene,
 	probeset: ps
