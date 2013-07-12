@@ -27,7 +27,10 @@ angular.module('geneApp.controllers', []).
       $http.get('api/' + $scope.which_gene + '/' + $scope.which_probeset).
 	  success(function(data){
 	    console.log(data);
-	      $scope.stuff = data
+	      $scope.gene = data.gene
+	      $scope.probeset = data.probeset
+	      console.log(data.probeset.expressions);
+	      $scope.expressions = data.probeset.expressions
 	  })
       // this yields the number of the probeset we want to call up, hooray!
       // we will need: the gene the probeset is associated with, all the expressions, and thus all the tissues

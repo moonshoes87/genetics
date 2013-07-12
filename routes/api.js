@@ -5,6 +5,51 @@ var genes = require("../models/genes");
 
 
 // initialize our faux database
+/*
+Expression(id: integer, mean: float, standard_deviation: float, probeset_id: integer, tissue_id: integer, created_at: datetime, updated_at: datetime)
+*/
+
+var expression1 = {
+    "mean": 12,
+    "stanard_deviation": 15,
+    "probeset_id": 1,
+    "tissue_id": 1
+}
+var expression2 = {    
+    "mean": 15,
+    "stanard_deviation": 88,
+    "probeset_id": 1,
+    "tissue_id": 2
+}
+var expression3 = {    
+    "mean": 32,
+    "stanard_deviation": 43,
+    "probeset_id": 2,
+    "tissue_id": 1
+}
+var expression4 = {    
+    "mean": 22,
+    "stanard_deviation": 65,
+    "probeset_id": 2,
+    "tissue_id": 3
+}
+var tissues = [{
+    "id": 1,
+    "name": "brain",
+    "total": 8
+},
+	       {
+    "id": 2,
+    "name": "eyeball",
+    "total": 78
+	       },
+	       {
+    "id": 3,
+    "name": "finger",
+    "total": 23
+}]
+
+
 var fake_db = {
     "genes": [
 	{
@@ -14,12 +59,20 @@ var fake_db = {
 	    "probesets": [{
 		"id": 1,
 		"number": 3872,
-		"gene_id": 0
+		"gene_id": 0,
+		"expressions": [
+		    expression1,
+		    expression2
+		]
 	    },
 			  {
 			      "id": 2,	   
 			      "number": 3289,
-			      "gene_id": 0
+			      "gene_id": 0,
+			      "expressions": [
+				  expression3,
+				  expression4
+			      ]
 			 }
 	]},
 	{
@@ -83,12 +136,12 @@ exports.probeset = function(req, res){
 	    ps = probesets[i]
 	}
     }
-    console.log("ps", ps)
-/*    for (probeset in gene.probesets){
-	return 0
-	//console.log("probeset", probeset) // mysteriously does not give an actual probeset
-    }*/
-
+    array = [] // put an array of tissues and means here, then write that to json
+    if(ps.expressions){ // this should ultimately grab the proper tissue name, so we have the right stuff for the array
+	for(i=0; i < ps.expressions.length; i++){
+	    console.log(ps.expressions[i]);
+	}
+    }
     res.json({
 	gene: gene,
 	probeset: ps
