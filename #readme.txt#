@@ -1,11 +1,1 @@
-Need to:
-      get db set up properly with the grabbing of genes
-      fire up git
-      make a git branch for restng
 
-
-
-What we want:
-
-get all the probesets of a gene.  
-then, select a probeset, and get: all its expressions
