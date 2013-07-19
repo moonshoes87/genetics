@@ -16,10 +16,8 @@ angular.module('geneApp.directives', []).
                 opts  = { };
                    
             scope.$watch(attrs.ngModel, function(v){ //where does v come from??? 
-		console.log('v', v)
 	//	v = dataize(v)  // necessary for categories mode
 		v = [v] // depends on how the data comes
-//		v = v 
 //		v = [ [[0, 1], [1, 5], [2, 2]] ]
 		console.log("final v", v)
 
@@ -37,7 +35,7 @@ angular.module('geneApp.directives', []).
 		tickLength: 0
             },
 	    yaxis: {
-//		mode: "categories",
+		mode: "categories",
 		position: top
 	    }
 	}

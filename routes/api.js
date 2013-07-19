@@ -148,7 +148,7 @@ exports.probeset = function(req, res){
 //	    console.log("tissue_id", tissue_id)
 	    var tissue = tissues[tissue_id]; 
 	    console.log("ex: ", ex, " tissue: ", tissue);
-	    array.push([tissue.name, ex.mean])
+	    array.push([ex.mean, tissue.name])
 	}
     }
     console.log("array", array);
