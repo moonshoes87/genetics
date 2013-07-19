@@ -7,11 +7,24 @@
   <!-- anything in curly braces in index should be done with ng-cloak or better ng-bind, so you don't get {{}} showing up  doesn't matter in the rest of the app, since that stuff gets compiled before it renders-->
   <h1><%= title %></h1>
   <div ng-view></div>
+  <p id="spacing" />
+
   <!-- best practice to have these scripts at the bottom, because they are blocking.  this way, your page can start loading and look good more quickly -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.js"></script>
-<!--    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script> change for production.  version??-->
-    <script src="controllers.js"></script>
-    <script src="GeneApp.js"></script>
-
+  <!--script src="/ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script-->
+  <script src="jquery"></script>
+  <script src="flot"></script>
+  <script src="flot_categories"></script>
+  <script src="controllers.js"></script>
+  <script src="directives.js"></script>
+  <script src="GeneApp.js"></script>
+    <!--div id="expressions_chart" style="width:1000px; height:500px"></div>
+  <script type="text/javascript" charset="utf-8">
+  $(function(){
+    var options = {}
+    var data = [[[1, 2], [3, 5], [8, 6]]]
+    $.plot($("#expressions_chart"), data, options)
+})
+</script -->
   </body>
 </html>

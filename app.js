@@ -9,7 +9,8 @@ var express = require('express')
   , api = require('./routes/api')
   , http = require('http')
   , path = require('path')
-  , genes = require('./models/genes'); // gene model is defined here
+  , genes = require('./models/genes') // gene model is defined here
+
 
 var app = express();
 
@@ -55,7 +56,6 @@ app.get('/api/:gene/:probeset', api.probeset);
 app.get('/partials/:name', routes.partials)
 app.get('/', routes.index);
 app.get('/stylesheets/style.css', function(request, response){
-    console.log("sent style.css");
     response.sendfile("/Users/nebula/angular_projects/genetics/public/stylesheets/style.css");
 })
 app.get('/GeneApp.js', function(request, response){
@@ -64,6 +64,20 @@ app.get('/GeneApp.js', function(request, response){
 app.get('/controllers.js', function(req, res){
     res.sendfile("/Users/nebula/angular_projects/genetics/public/javascripts/controllers.js");
 })
+app.get('/directives.js', function(req, res){
+    res.sendfile("/Users/nebula/angular_projects/genetics/public/javascripts/directives.js");
+})
+app.get('/jquery', function(req, res){
+    res.sendfile("/Users/nebula/angular_projects/genetics/public/javascripts/lib/jquery/the_file.js");
+})
+app.get('/flot', function(req, res){
+    res.sendfile("/Users/nebula/angular_projects/genetics/public/javascripts/lib/flot/jquery.flot.js");
+})
+app.get('/flot_categories', function(req, res){
+    res.sendfile("/Users/nebula/angular_projects/genetics/public/javascripts/lib/flot/jquery.flot.categories.js");
+})
+
+//               /Users/nebula/angular_projects/genetics/public/javascripts/lib/flot
 //app.get("partials/partial1", function(req, res){
 //    res.sendfile("/Users/nebula/angular_projects/views/partials/partial1.ejs");
 //})

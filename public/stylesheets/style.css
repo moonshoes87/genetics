@@ -7,3 +7,13 @@ a {
   color: #00B7FF;
 }
 
+chart {
+    display: none;
+    width:1000px;
+    height:500px;
+}
+
+/* however much space chart needs */
+#spacing {
+    padding: 300px;
+}

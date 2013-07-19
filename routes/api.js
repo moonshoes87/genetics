@@ -13,7 +13,7 @@ var expression1 = {
     "mean": 12,
     "stanard_deviation": 15,
     "probeset_id": 1,
-    "tissue_id": 1
+    "tissue_id": 3
 }
 var expression2 = {    
     "mean": 15,
@@ -33,6 +33,7 @@ var expression4 = {
     "probeset_id": 2,
     "tissue_id": 3
 }
+
 var tissues = [{
     "id": 1,
     "name": "brain",
@@ -138,13 +139,23 @@ exports.probeset = function(req, res){
     }
     array = [] // put an array of tissues and means here, then write that to json
     if(ps.expressions){ // this should ultimately grab the proper tissue name, so we have the right stuff for the array
+	console.log("heyo")
 	for(i=0; i < ps.expressions.length; i++){
-	    console.log(ps.expressions[i]);
+	    console.log("i", i);
+	    var ex = ps.expressions[i]
+	    var tissue_id = ps.expressions[i].tissue_id;
+	    tissue_id = tissue_id - 1;  // fenceposts!
+//	    console.log("tissue_id", tissue_id)
+	    var tissue = tissues[tissue_id]; 
+	    console.log("ex: ", ex, " tissue: ", tissue);
+	    array.push([tissue.name, ex.mean])
 	}
     }
+    console.log("array", array);
     res.json({
 	gene: gene,
-	probeset: ps
+	probeset: ps,
+	expressions_array: array
     })
 }
 

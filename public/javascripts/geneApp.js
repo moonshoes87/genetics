@@ -2,10 +2,10 @@
 
 console.log("starting getting geneApp.js");
 angular.module('geneApp', [
-    'geneApp.controllers'
+    'geneApp.controllers',
 //    'myApp.filters',
 //    'myApp.services',
-//    'myApp.directives'
+    'geneApp.directives'
 ])/*.config(function($routeProvider, $locationProvider){
     $routeProvider.
 	when('/', {controller: 'IndexCtrl'}).//, templateUrl: 'template1.ejs'}).
