@@ -8,7 +8,6 @@ angular.module('geneApp.controllers', []).
     console.log("WorldCtrl works");
 }).
   controller('IndexCtrl', function($scope, $http, $location) {
-      $scope.var2 = "other variable";
       $http.get("/api/genes").
 	  success(function(data, status, headers, config){
 	      $scope.genes = data.genes;
